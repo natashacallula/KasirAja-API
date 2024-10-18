@@ -1,0 +1,5018 @@
+{
+	"info": {
+		"_postman_id": "8b79c56b-509b-4e66-bd1d-fad92ad18fe6",
+		"name": "Natasha-PROA-SQA-Rakamin-Week 5",
+		"description": "This collection contains **API testing** of **Kasir Aja** features. This collection is divided into eight folders, each corresponding to a different endpoint. Every test has a successful testing example. It utilizes an environment named \"baseurl\", which contains the URL [<b>https://kasir-api.belajarqa.com</b>](https://kasir-api.belajarqa.com)\n\n([Kasir Aja Contract](https://resource.belajarqa.com/api_contract))",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24794114"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Ayam Bakar Madu Sukabumi\",\r\n   \"email\": \"ayambakar@yahoo.com\",\r\n   \"password\": \"sambalterasi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/registration",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success regist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Ayam Bakar Madu Sukabumi\",\r\n   \"email\": \"ayambakar@yahoo.com\",\r\n   \"password\": \"sambalterasi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/registration",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"registration"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "131"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Oct 2023 14:00:43 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Toko berhasil didaftarkan\",\n    \"data\": {\n        \"name\": \"Ayam Bakar Madu Sukabumi\",\n        \"email\": \"ayambakar@yahoo.com\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"accessToken\", respon.data.accessToken);\r",
+									"pm.collectionVariables.set(\"refreshToken\", respon.data.refreshToken);\r",
+									"pm.collectionVariables.set(\"officeId\", respon.data.user.officeId);\r",
+									"pm.collectionVariables.set(\"companyId\", respon.data.user.companyId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"ayambakar@yahoo.com\",\r\n   \"password\": \"sambalterasi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/authentications",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"email\": \"ayambakar@yahoo.com\",\r\n   \"password\": \"sambalterasi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/authentications",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"authentications"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "507"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Oct 2023 14:05:53 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Authentication berhasil ditambahkan\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4MzA2MDA1LTNjMjAtNGNhNS04OGQ2LWMxMTVmODZiM2ViZCIsImNvbXBhbnlJZCI6Ijk3YTEwNmRhLTIwZTUtNDY0ZS04ZDBmLWM0OGVmMzU1MTgyMiIsImlhdCI6MTY5Njg2MDM1M30.EBSXkrywbBCzHurpTNnrwhj_yh1Z8SrtplIimqdwEpQ\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI4MzA2MDA1LTNjMjAtNGNhNS04OGQ2LWMxMTVmODZiM2ViZCIsImNvbXBhbnlJZCI6Ijk3YTEwNmRhLTIwZTUtNDY0ZS04ZDBmLWM0OGVmMzU1MTgyMiIsImlhdCI6MTY5Njg2MDM1M30.qC76kprPqXgf0YCq9Rbsyuo3Sx1ZZJroPSAuocI63ek\",\n        \"user\": {\n            \"id\": \"b8306005-3c20-4ca5-88d6-c115f86b3ebd\",\n            \"name\": \"Ayam Bakar Madu Sukabumi\",\n            \"role\": \"admin\",\n            \"email\": \"ayambakar@yahoo.com\",\n            \"officeId\": \"09062ee9-a4d8-49ab-860c-cd69292dd816\",\n            \"companyId\": \"97a106da-20e5-464e-8d0f-c48ef3551822\",\n            \"company_name\": \"Ayam Bakar Madu Sukabumi\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/authentications",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success refresh token",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/authentications",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"authentications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "269"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 07:38:38 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Access Token berhasil diperbarui\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAyZjkxNmU0LWM2ZWYtNDVlMy1iYzMxLWQ2YTdjNDhiODJiOSIsImNvbXBhbnlJZCI6ImRlMDA5MWFmLTdiMTUtNGM1Yy04MTE5LTg5ODU1ZWQ0NWQ4YSIsImlhdCI6MTY5NjkyMzUxOH0.YaRyygnFoT1vOeztMX2I2fwsfLLJqe_aVbLd5VUGGu8\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/authentications",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"authentications"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success delete refresh token",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"refreshToken\": \"{{refreshToken}}\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/authentications",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"authentications"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "63"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 07:46:48 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Refresh token berhasil dihapus\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **authorization** folder contains API testing for the following functionalities:\n\n1. Registering a new account\n2. Logging into an account\n3. Refreshing a token\n4. Deleting a token"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"userID\", respon.data.userId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Ayam Bakar Madu Sukabumi\",\r\n   \"email\": \"ayambakar@yahoo.com\",\r\n   \"password\": \"sambalterasi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success create user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Ayam Bakar Madu Sukabumi\",\r\n   \"email\": \"ayambakar@yahoo.com\",\r\n   \"password\": \"sambalterasi\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "161"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Oct 2023 16:00:37 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": \"615522f9-0017-4e10-9b5e-05c00c5a1fe7\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"admin\"\n            }\n        ],\n        \"meta\": {\n            \"totalPages\": 1,\n            \"total\": 1,\n            \"page\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users/{{userID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get user detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/{{userID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"{{userID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "161"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Oct 2023 16:49:19 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"user\": {\n            \"id\": \"05dfe11c-48ae-4529-8312-c485e87e02f3\",\n            \"name\": \"Ayam Bakar Madu Sukabumi\",\n            \"email\": \"ayambakar@yahoo.com\",\n            \"role\": \"kasir\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users?q=Ayam bakar madu Sukabumi&p=1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Ayam bakar madu Sukabumi"
+								},
+								{
+									"key": "p",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get user list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users?q=Ayam bakar madu Sukabumi&p=1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Ayam bakar madu Sukabumi"
+										},
+										{
+											"key": "p",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,accept-encoding,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "transfer-encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "content-encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Oct 2023 17:00:16 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": \"05dfe11c-48ae-4529-8312-c485e87e02f3\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"e13508b1-baa7-4dd7-b169-b9fcac15dade\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"e559ca52-551e-42b1-9a6b-198c17131f2f\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"87919705-7569-441f-9e9a-bd77b014c7c8\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"3a34fad0-97b4-4731-a15a-8dea414d06a5\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"02f916e4-c6ef-45e3-bc31-d6a7c48b82b9\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"2d989b15-8601-4f3d-972c-2fe519cf8649\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"77c08fc0-3d52-4f0d-b541-d82ec06c4145\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"2028e89a-85be-4322-a694-d90ded6ffe8c\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            },\n            {\n                \"id\": \"4d05debf-1c0f-4a12-8f53-9057dd22dc69\",\n                \"name\": \"Ayam Bakar Madu Sukabumi\",\n                \"email\": \"ayambakar@yahoo.com\",\n                \"role\": \"kasir\"\n            }\n        ],\n        \"meta\": {\n            \"totalPages\": 2,\n            \"total\": 14,\n            \"page\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"Ayam Bakar Sukabumi Cabang Cibubur\",\r\n\"email\": \"ayambakar@yahoo.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users/{{userID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success update user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"Ayam Bakar Sukabumi Cabang Cibubur\",\r\n\"email\": \"ayambakar@yahoo.com\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/{{userID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"{{userID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "108"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Oct 2023 17:07:31 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User berhasil diupdate\",\n    \"data\": {\n        \"name\": \"Ayam Bakar Sukabumi Cabang Cibubur\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/users/{{userID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"users",
+								"{{userID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success delete user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/{{userID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"{{userID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "54"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 16 Oct 2023 15:24:58 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User berhasil dihapus\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **user** folder contains API testing for the following functionalities:\n\n1. Creating a new user\n2. Retrieving detailed user information\n3. Getting a list of users\n4. Updating user information\n    \n5. Deleting user"
+		},
+		{
+			"name": "Units",
+			"item": [
+				{
+					"name": "Add Unit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"unitID\", respon.data.unitId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Ekor\",\r\n   \"description\": \"Count\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/units",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"units"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success add unit",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Ekor\",\r\n   \"description\": \"Count\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/units",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"units"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "129"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 03:54:54 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Unit berhasil ditambahkan\",\n    \"data\": {\n        \"unitId\": \"163d39c8-5adf-412b-9ef2-0004a628d225\",\n        \"name\": \"Ekor\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/units/{{unitID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"units",
+								"{{unitID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get unit detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/units/{{unitID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"units",
+										"{{unitID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "74"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 04:00:18 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"unit\": {\n            \"name\": \"Ekor\",\n            \"description\": \"Count\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Unit List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/units?q=Potong&page=1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"units"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Potong"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get unit list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/units?q=Potong&page=1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"units"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Potong"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "168"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:49:56 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"units\": [\n            {\n                \"id\": \"1f377a6d-3ae5-42e4-9f86-31590088ffd0\",\n                \"name\": \"Potong\",\n                \"description\": \"Count\"\n            }\n        ],\n        \"meta\": {\n            \"totalPages\": 1,\n            \"total\": 1,\n            \"page\": \"1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Unit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Potong\",\r\n   \"description\": \"Count\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/units/{{unitID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"units",
+								"{{unitID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success update unit",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Potong\",\r\n   \"description\": \"Count\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/units/{{unitID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"units",
+										"{{unitID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "45"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 04:05:30 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"Potong\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Unit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/units/{{unitID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"units",
+								"{{unitID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success delete user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/units/{{unitID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"units",
+										"{{unitID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "30"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 16 Oct 2023 15:27:55 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {}\n}"
+						}
+					]
+				}
+			],
+			"description": "The **units** folder contains API testing for the following functionalities:\n\n1. Adding a new user\n2. Retrieving detailed unit information\n3. Getting a list of units\n4. Updating unit information\n    \n5. Deleting unit"
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Add Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"categoryID\", respon.data.categoryId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Es Jeruk\",\r\n   \"description\": \"Minuman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/categories",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Succcess add category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Es Jeruk\",\r\n   \"description\": \"Minuman\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/categories",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "141"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:41:09 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Category berhasil ditambahkan\",\n    \"data\": {\n        \"categoryId\": \"e2bd8470-1327-402d-8811-eb7d86672d7b\",\n        \"name\": \"Es Jeruk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Category Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/categories/{{categoryID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"categories",
+								"{{categoryID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get detail category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/categories/{{categoryID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "84"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:43:03 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"category\": {\n            \"name\": \"Es Jeruk\",\n            \"description\": \"Minuman\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Category List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/categories?q=Es Jeruk&page=1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Es Jeruk"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Get category list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/categories?q=Es Jeruk&page=1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"categories"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Es Jeruk"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "202"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:47:40 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"categories\": [\n            {\n                \"id\": \"e2bd8470-1327-402d-8811-eb7d86672d7b\",\n                \"name\": \"Es Jeruk\",\n                \"description\": \"Minuman Dingin\"\n            },\n            {\n                \"id\": \"519c42af-6ece-4b40-b81c-14981c512a99\",\n                \"name\": \"Es Jeruk\",\n                \"description\": \"Minuman\"\n            }\n        ],\n        \"meta\": {\n            \"totalPages\": 1,\n            \"total\": 2,\n            \"page\": \"1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Es Jeruk\",\r\n   \"description\": \"Minuman Dingin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/categories/{{categoryID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"categories",
+								"{{categoryID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success update category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Es Jeruk\",\r\n   \"description\": \"Minuman Dingin\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/categories/{{categoryID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "47"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:44:30 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"Es Jeruk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/categories/{{categoryID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"categories",
+								"{{categoryID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success delete category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/categories/{{categoryID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"categories",
+										"{{categoryID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "30"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 16 Oct 2023 15:33:36 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {}\n}"
+						}
+					]
+				}
+			],
+			"description": "The **categories** folder contains API testing for the following functionalities:\n\n1. Adding a new category\n2. Retrieving detailed category information\n3. Getting a list of categories\n4. Updating category information\n    \n5. Deleting category"
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Add Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"customerID\", respon.data.customerId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Jamilah\",\r\n   \"phone\": \"081282860988\",\r\n   \"address\": \"Jakarta Timmur\",\r\n   \"description\": \"Anggota member 1 tahun\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/customers",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"customers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success add customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Jamilah\",\r\n   \"phone\": \"081282860988\",\r\n   \"address\": \"Jakarta Timmur\",\r\n   \"description\": \"Anggota member 1 tahun\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/customers",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"customers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "140"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:53:42 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Customer berhasil ditambahkan\",\n    \"data\": {\n        \"customerId\": \"ba373ad5-44aa-4d74-9f99-8b246cdb1e22\",\n        \"name\": \"Jamilah\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Customers Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/customers/{{customerID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"customers",
+								"{{customerID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get category detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/customers/{{customerID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"customers",
+										"{{customerID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "148"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:55:39 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"customer\": {\n            \"name\": \"Jamilah\",\n            \"phone\": \"081282860988\",\n            \"address\": \"Jakarta Timmur\",\n            \"description\": \"Anggota member 1 tahun\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Customers List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/customers?q=Jamilah&page=1",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Jamilah"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get customers list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/customers?q=Jamilah&page=1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"customers"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "Jamilah"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "160"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:57:27 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"customers\": [\n            {\n                \"id\": \"ba373ad5-44aa-4d74-9f99-8b246cdb1e22\",\n                \"name\": \"Jamilah\",\n                \"phone\": \"081282860988\",\n                \"description\": \"Anggota member 1 tahun\"\n            }\n        ],\n        \"meta\": {\n            \"totalPages\": 1,\n            \"total\": 1,\n            \"page\": \"1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Jamilah\",\r\n   \"phone\": \"081282860988\",\r\n   \"address\": \"Jakarta Timmur\",\r\n   \"description\": \"Anggota member 2 tahun\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/customers/{{customerID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"customers",
+								"{{customerID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success update category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Jamilah\",\r\n   \"phone\": \"081282860988\",\r\n   \"address\": \"Jakarta Timmur\",\r\n   \"description\": \"Anggota member 2 tahun\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/customers/{{customerID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"customers",
+										"{{customerID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "46"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 05:59:00 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"name\": \"Jamilah\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/customers/{{customerID}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"customers",
+								"{{customerID}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success delete customers",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/customers/{{customerID}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"customers",
+										"{{customerID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "30"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 16 Oct 2023 15:34:49 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {}\n}"
+						}
+					]
+				}
+			],
+			"description": "The **customers** folder contains API testing for the following functionalities:\n\n1. Adding a new customer\n2. Retrieving detailed customer information\n3. Getting a list of customers\n4. Updating customer information\n    \n5. Deleting customer"
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"productId\", respon.data.productId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"category_id\":\"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"Food\",\r\n   \"name\": \"Ayam Bakar Madu\",\r\n   \"price\": \"20000\",\r\n   \"cost\": \"15000\",\r\n   \"stock\": \"100\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/products",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success add products",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\":\"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"Food\",\r\n   \"name\": \"Ayam Bakar Madu\",\r\n   \"price\": \"20000\",\r\n   \"cost\": \"15000\",\r\n   \"stock\": \"100\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "146"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 06:12:51 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product berhasil ditambahkan\",\n    \"data\": {\n        \"productId\": \"780c07a5-3ff5-4c71-b80a-9922142d5e25\",\n        \"name\": \"Ayam Bakar Madu\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Products Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/products/{{productId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get products detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products/{{productId}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "198"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 06:14:41 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"product\": {\n            \"code\": \"Food\",\n            \"name\": \"Ayam Bakar Madu\",\n            \"description\": null,\n            \"price\": 20000,\n            \"cost\": 15000,\n            \"cost_average\": null,\n            \"category_name\": null,\n            \"category_id\": null,\n            \"stock\": 100\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Products List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/products?page=1&q=Ayam Bakar Madu&withStock=true&withCategory=true",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "q",
+									"value": "Ayam Bakar Madu"
+								},
+								{
+									"key": "withStock",
+									"value": "true"
+								},
+								{
+									"key": "withCategory",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Succes get products list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products?page=1&q=Ayam Bakar Madu&withStock=true&withCategory=true",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "q",
+											"value": "Ayam Bakar Madu"
+										},
+										{
+											"key": "withStock",
+											"value": "true"
+										},
+										{
+											"key": "withCategory",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "239"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 06:18:57 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"products\": [\n            {\n                \"id\": \"780c07a5-3ff5-4c71-b80a-9922142d5e25\",\n                \"code\": \"Food\",\n                \"name\": \"Ayam Bakar Madu\",\n                \"description\": null,\n                \"price\": 20000,\n                \"cost\": 15000,\n                \"stock\": 100,\n                \"sale\": 0,\n                \"purchase\": 0,\n                \"category_name\": null\n            },\n            {\n                \"id\": \"cd6bed8c-ba12-4d9f-8f1e-8f8d8f7f4adf\",\n                \"code\": \"Food\",\n                \"name\": \"Ayam Bakar Madu\",\n                \"description\": null,\n                \"price\": 20000,\n                \"cost\": 15000,\n                \"stock\": 100,\n                \"sale\": 0,\n                \"purchase\": 0,\n                \"category_name\": null\n            }\n        ],\n        \"meta\": {\n            \"totalPages\": 1,\n            \"total\": 2,\n            \"page\": \"1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"category_id\":\"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"Food\",\r\n   \"name\": \"Ayam Bakar Madu\",\r\n   \"price\": \"20000\",\r\n   \"cost\": \"15000\",\r\n   \"stock\": \"80\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/products/{{productId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success update products",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\":\"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"Food\",\r\n   \"name\": \"Ayam Bakar Madu\",\r\n   \"price\": \"20000\",\r\n   \"cost\": \"15000\",\r\n   \"stock\": \"80\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products/{{productId}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "92"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 06:21:09 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product berhasil diupdate\",\n    \"data\": {\n        \"name\": \"Ayam Bakar Madu\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/products/{{productId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success delete product",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/products/{{productId}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"products",
+										"{{productId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "57"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 16 Oct 2023 15:36:39 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Product berhasil dihapus\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The **products** folder contains API testing for the following functionalities:\n\n1. Adding a new products\n2. Retrieving detailed product information\n3. Getting a list of products\n4. Updating product information\n    \n5. Deleting product"
+		},
+		{
+			"name": "Transaction - Sales",
+			"item": [
+				{
+					"name": "Add Sales",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"saleId\", respon.data.saleId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"officeId\": \"{{officeId}}\",\r\n   \"customerId\": \"{{customerID}}\",\r\n   \"date\": \"2023-10-01\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 20000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 20000\r\n       }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/sales",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"sales"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success add sales",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"{{officeId}}\",\r\n   \"customerId\": \"{{customerID}}\",\r\n   \"date\": \"2023-10-01\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 20000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"price\": 20000\r\n       }\r\n   ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/sales",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"sales"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "111"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 07:43:58 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"transaksi ditambahkan\",\n    \"data\": {\n        \"saleId\": \"c05d99b6-775c-46b2-8a3e-ba7fb5a6c25a\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Sales Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/sales/{{saleId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"sales",
+								"{{saleId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get sales data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/sales/{{saleId}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"sales",
+										"{{saleId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "293"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 06:50:25 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"sale\": {\n            \"date\": \"2023-09-30T17:00:00.000Z\",\n            \"invoice\": \"INV001\",\n            \"description\": \"Pembelian pertama\",\n            \"amount\": 20000,\n            \"discount\": 0,\n            \"casier\": \"Ayam Bakar Madu Sukabumi\",\n            \"office_name\": null,\n            \"customer_id\": \"ba373ad5-44aa-4d74-9f99-8b246cdb1e22\",\n            \"customer_name\": \"Jamilah\",\n            \"items\": [\n                {\n                    \"id\": \"780c07a5-3ff5-4c71-b80a-9922142d5e25\",\n                    \"code\": \"Food\",\n                    \"name\": \"Ayam Bakar Madu\",\n                    \"quantity\": 1,\n                    \"price\": 20000\n                }\n            ]\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The **sales** folder contains API testing for the following functionalities:\n\n1. Adding a new sales transaction\n2. Retrieving detailed sales transaction"
+		},
+		{
+			"name": "Transaction - Purchases",
+			"item": [
+				{
+					"name": "Add Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var respon = pm.response.json();\r",
+									"pm.collectionVariables.set(\"purchaseId\", respon.data.purchaseId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"officeId\": \"{{officeId}}\",\r\n   \"date\": \"2023-10-10\",\r\n   \"invoice\": \"INV002\",\r\n   \"amount\": 20000,\r\n   \"discount\": 0,\r\n   \"description\": \"Paket hemat\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"cost\": 15000\r\n       }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/purchases",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"purchases"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success add transaction",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"{{officeId}}\",\r\n   \"date\": \"2023-10-10\",\r\n   \"invoice\": \"INV002\",\r\n   \"amount\": 20000,\r\n   \"discount\": 0,\r\n   \"description\": \"Paket hemat\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"{{productId}}\",\r\n           \"quantity\": 1,\r\n           \"cost\": 15000\r\n       }\r\n   ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/purchases",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"purchases"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "115"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 07:45:48 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"transaksi ditambahkan\",\n    \"data\": {\n        \"purchaseId\": \"726fe59b-b461-467a-a287-1f270d65cb3b\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Transaction Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/purchases/{{purchaseId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"purchases",
+								"{{purchaseId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success get transaction detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{accessToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/purchases/{{purchaseId}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"purchases",
+										"{{purchaseId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "vary",
+									"value": "origin,Accept-Encoding,User-Agent"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "content-length",
+									"value": "235"
+								},
+								{
+									"key": "content-encoding",
+									"value": "br"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 10 Oct 2023 07:00:15 GMT"
+								},
+								{
+									"key": "server",
+									"value": "LiteSpeed"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Niagahoster"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=31536000; includeSubDomains; preload"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "alt-svc",
+									"value": "h3=\":443\"; ma=2592000, h3-29=\":443\"; ma=2592000, h3-Q050=\":443\"; ma=2592000, h3-Q046=\":443\"; ma=2592000, h3-Q043=\":443\"; ma=2592000, quic=\":443\"; ma=2592000; v=\"43,46\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"data\": {\n        \"purchase\": {\n            \"date\": \"2023-10-09T17:00:00.000Z\",\n            \"invoice\": \"INV002\",\n            \"description\": \"Paket hemat\",\n            \"amount\": 20000,\n            \"discount\": 0,\n            \"creator\": \"Ayam Bakar Madu Sukabumi\",\n            \"office_name\": null,\n            \"items\": [\n                {\n                    \"id\": \"780c07a5-3ff5-4c71-b80a-9922142d5e25\",\n                    \"code\": \"Food\",\n                    \"name\": \"Ayam Bakar Madu\",\n                    \"quantity\": 1,\n                    \"cost\": 15000\n                }\n            ]\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The **purchases** folder contains API testing for the following functionalities:\n\n1. Adding a new purchase transaction\n    \n2. Retrieving detailed purchase transaction"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"key": "userID",
+			"value": ""
+		},
+		{
+			"key": "refreshToken",
+			"value": ""
+		},
+		{
+			"key": "unitID",
+			"value": ""
+		},
+		{
+			"key": "categoryID",
+			"value": ""
+		},
+		{
+			"key": "customerID",
+			"value": ""
+		},
+		{
+			"key": "productId",
+			"value": ""
+		},
+		{
+			"key": "saleId",
+			"value": ""
+		},
+		{
+			"key": "purchaseId",
+			"value": ""
+		},
+		{
+			"key": "officeId",
+			"value": ""
+		},
+		{
+			"key": "companyId",
+			"value": ""
+		}
+	]
+}
